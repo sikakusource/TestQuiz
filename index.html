@@ -483,6 +483,17 @@
   </div>
 </div>
 
+<!-- Bookmark Detail Modal -->
+<div id="bookmarkDetailModal" class="modal">
+  <div class="modal-content" style="max-width: 600px;">
+    <h2 id="detailTitle">問題確認</h2>
+    <div id="detailContent" style="max-height: 60vh; overflow-y: auto;"></div>
+    <div style="display: flex; gap: 12px; margin-top: 20px;">
+      <button class="btn btn-primary" style="flex: 1;" onclick="closeBookmarkDetail()">閉じる</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const DEFAULT_SETTINGS = {
   dataUrl: './quiz_list.json',
@@ -1025,6 +1036,7 @@ function displayBookmarks() {
     return `
       <div class="bookmark-item">
         <div class="bookmark-item-q">問${idx + 1}. ${q.question.substring(0, 80)}...</div>
+        <button class="bookmark-item-btn" style="background: #2196F3; margin-right: 8px;" onclick="showBookmarkDetail('${id}')">確認</button>
         <button class="bookmark-item-btn" onclick="removeBookmark('${id}')">削除</button>
       </div>
     `;
@@ -1055,6 +1067,39 @@ function clearAllBookmarks() {
 function startReviewMode() {
   closeBookmarks();
   startGame(true);
+}
+
+function showBookmarkDetail(id) {
+  const q = allQuestionsData.find(x => x.id === id);
+  if (!q) return;
+
+  const choicesHtml = q.choices.map(c => `
+    <div style="padding: 8px 12px; background: ${c.k === q.correct ? '#e8f5e9' : '#f5f5f5'}; border-radius: 4px; margin-bottom: 8px; border-left: 4px solid ${c.k === q.correct ? '#4CAF50' : '#ddd'};">
+      <strong>${c.k}. ${c.t}</strong>
+      ${c.k === q.correct ? ' <span style="color: #4CAF50; font-weight: bold;">✓ 正解</span>' : ''}
+    </div>
+  `).join('');
+
+  const html = `
+    <div style="margin-bottom: 16px;">
+      <div style="background: #f5f5f5; padding: 16px; border-radius: 8px; margin-bottom: 16px; line-height: 1.8;">
+        <strong>【問題】</strong><br>${q.question}
+      </div>
+      <div style="margin-bottom: 16px;">
+        <strong>【選択肢】</strong><br>${choicesHtml}
+      </div>
+      <div style="background: #fff8e1; padding: 12px; border-radius: 8px; border-left: 4px solid #ff6f00;">
+        <strong>【解説】</strong><br>${q.explanation || '解説なし'}
+      </div>
+    </div>
+  `;
+
+  document.getElementById('detailContent').innerHTML = html;
+  document.getElementById('bookmarkDetailModal').classList.add('active');
+}
+
+function closeBookmarkDetail() {
+  document.getElementById('bookmarkDetailModal').classList.remove('active');
 }
 
 function confirmQuit() {
