@@ -996,6 +996,24 @@ function openBookmarks() {
     return;
   }
 
+  // allQuestionsDataが空の場合、再度読み込む
+  if (allQuestionsData.length === 0) {
+    loadQuestions(settings.dataUrl).then(loaded => {
+      if (!loaded) {
+        cont.innerHTML = '<p style="color: #c62828;">問題データの読み込みに失敗しました</p>';
+        return;
+      }
+      allQuestionsData = loaded;
+      displayBookmarks();
+    });
+    return;
+  }
+
+  displayBookmarks();
+}
+
+function displayBookmarks() {
+  const cont = document.getElementById('bookmarkListContainer');
   const bmList = bookmarked.map(id => {
     const q = allQuestionsData.find(x => x.id === id);
     if (!q) return '';
