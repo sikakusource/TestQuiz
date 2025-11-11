@@ -336,8 +336,8 @@
       <button class="btn btn-secondary" onclick="openSettings()">設定</button>
     </div>
     <div id="bookmarkSection" style="text-align: center; margin-top: 20px; padding: 14px; background: #fff8e1; border-radius: 8px; display: none;">
-      <button class="btn btn-secondary" style="width: 100%;" onclick="openBookmarks()">🔖 ブックマーク一覧 <span id="bookmarkCount" class="bookmark-badge">0</span></button>
-      <button class="btn btn-secondary" style="width: 100%; margin-top: 10px;" onclick="startReviewMode()">📚 振り返りモードで復習</button>
+      <button class="btn btn-secondary" style="width: 100%;" onclick="openBookmarks()">❌ 間違えた問題 <span id="bookmarkCount" class="bookmark-badge">0</span></button>
+      <button class="btn btn-secondary" style="width: 100%; margin-top: 10px;" onclick="startReviewMode()">📚 間違えた問題で復習</button>
     </div>
     <p style="text-align: center; color: #999; font-size: 0.9em; margin-top: 20px;">
       ワクワクのクイズゲーム 🎮✨
@@ -472,8 +472,8 @@
 <!-- Bookmarks Modal -->
 <div id="bookmarksModal" class="modal">
   <div class="modal-content">
-    <h2>🔖 ブックマーク一覧</h2>
-    <p style="color: #666; font-size: 0.95em; margin-bottom: 16px;">間違えた問題を復習できます。</p>
+    <h2>❌ 間違えた問題</h2>
+    <p style="color: #666; font-size: 0.95em; margin-bottom: 16px;">不正解だった問題を復習できます。</p>
     <div id="bookmarkListContainer" class="bookmark-list"></div>
     <div style="display: flex; gap: 12px; margin-top: 20px;">
       <button class="btn btn-primary" style="flex: 2;" onclick="startReviewMode()">📚 復習を開始</button>
@@ -1006,7 +1006,7 @@ function goToTitle() {
 function openBookmarks() {
   const cont = document.getElementById('bookmarkListContainer');
   if (bookmarked.length === 0) {
-    cont.innerHTML = '<p style="color: #999;">ブックマークされた問題がありません</p>';
+    cont.innerHTML = '<p style="color: #999;">保存された問題がありません</p>';
     document.getElementById('bookmarksModal').classList.add('active');
     return;
   }
