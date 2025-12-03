@@ -408,17 +408,19 @@
     <div class="settings-group">
       <label for="dataUrl">データURL (GitHub Raw)</label>
       <input type="text" id="dataUrl" placeholder="https://raw.githubusercontent.com/...">
-      <small style="color: #999;">JSON形式のデータファイルへの直リンク</small>
+      <small style="color: #999;">変更しないでください。間違えて変更した場合は「初期値に戻す」ボタンを押してください。</small>
     </div>
 
     <div class="settings-group">
       <label for="totalQuestions">出題数</label>
       <input type="number" id="totalQuestions" min="5" max="500" value="20">
+      <small style="color: #999;">5～179まで設定可能。（テスト問題は全部で179問です）</small>
     </div>
 
     <div class="settings-group">
       <label for="timePerQuestion">1問の制限秒数</label>
       <input type="number" id="timePerQuestion" min="10" max="600" value="108">
+      <small style="color: #999;">108秒（本番50問90分相当）の設定を推奨します。</small>
     </div>
 
     <div class="settings-group">
@@ -426,6 +428,7 @@
         <input type="checkbox" id="unlimitedTime">
         <span>制限時間無制限</span>
       </label>
+      <small style="color: #999; display: block; margin-top: 4px;">制限時間なく問題に取り組みたい場合はチェックを入れてください。</small>
     </div>
 
     <div class="settings-group">
@@ -433,11 +436,13 @@
         <input type="checkbox" id="usePass" checked>
         <span>合格ラインを使用</span>
       </label>
+      <small style="color: #999; display: block; margin-top: 4px;">合格ラインを下回った段階でゲームオーバーになります。チェックを外すと最後まで問題を解けます。</small>
     </div>
 
     <div class="settings-group">
       <label for="passingScore">合格必要点</label>
       <input type="number" id="passingScore" min="0" max="500" value="15">
+      <small style="color: #999;">合格に必要な点数を設定します。この点数を下回るとゲームオーバーになります。</small>
     </div>
 
     <div class="settings-group">
@@ -445,6 +450,7 @@
         <input type="checkbox" id="shuffleQ" checked>
         <span>問題をランダム抽選</span>
       </label>
+      <small style="color: #999; display: block; margin-top: 4px;">基本ONでOK。チェックを外すと毎回同じ順番で出題されます。</small>
     </div>
 
     <div class="settings-group">
@@ -452,6 +458,7 @@
         <input type="checkbox" id="shuffleC" checked>
         <span>選択肢をランダム並び</span>
       </label>
+      <small style="color: #999; display: block; margin-top: 4px;">基本ONでOK。選択肢の場所で答えを覚えてしまうのを防ぎます。</small>
     </div>
 
     <div class="settings-group">
@@ -459,6 +466,7 @@
         <input type="checkbox" id="enableSound" checked>
         <span>効果音・BGMを有効</span>
       </label>
+      <small style="color: #999; display: block; margin-top: 4px;">デフォルトはOFF。ONにすると簡単な効果音が鳴ります。</small>
     </div>
 
     <div style="display: flex; gap: 12px; margin-top: 24px;">
